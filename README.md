@@ -8,3 +8,12 @@ An Online E-commerce System better than Amazon. Amazon ki maa ka ************.
     - Admin can add more products
     - User can add products to the shopping listand stuff
 - Use terminal functions like gotoxy to create frontend
+
+
+# User Functions
+
+- Buying(), Delivery_Option(), Bill_Print()
+
+# Admin Functions
+
+- New_Products(), Remove_Products(), Search()
