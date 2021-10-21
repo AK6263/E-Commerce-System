@@ -17,3 +17,21 @@ An Online E-commerce System better than Amazon. Amazon ki maa ka ************.
 # Admin Functions
 
 - New_Products(), Remove_Products(), Search()
+
+# Requirements
+
+- Current Stocks of the product 
+- Unique id for each product
+
+# Database Structure
+
+## Product database
+
+The Product database has the following structure new id will be added depending on the last id value
+```
+PRODUCT NAME(string),QUANTITY(int),PRICE(float),ID(int)
+```
+The Following Code Snippet can be used 
+``` c
+fscanf(fptr, "%[^,],%d,%f,%d", product_name, &quantity, &price, &id);
+```
