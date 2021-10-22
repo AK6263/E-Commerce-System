@@ -1,6 +1,12 @@
 # E-Commerce-System
 An Online E-commerce System better than Amazon. Amazon ki maa ka ************. 
 
+## To run
+
+Keep the working directory in E-Commerce-System
+``` bash
+gcc main.c -o ./bin/main ; ./bin/main
+```
 ## Modules it will require
 
 - Admin and User Login and Sign-up Options
@@ -35,3 +41,4 @@ The Following Code Snippet can be used
 ``` c
 fscanf(fptr, "%[^,],%d,%f,%d", product_name, &quantity, &price, &id);
 ```
+
