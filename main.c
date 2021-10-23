@@ -6,7 +6,7 @@ void addProduct(char*[]);
 void removeProduct(void);
 void search(void);
 void readFile(void);
-FILE *fptr;
+FILE *fptr,*fp,*ft;
 
 typedef struct product
 {
@@ -18,9 +18,11 @@ typedef struct product
 }Product;
 
 
+Product *p;
+Product p_1;
+
 void create() {
-    FILE *fptr;
-    Product *p;
+    // Product *p;
     char temp[2];
     int n, i, j;
 
@@ -52,8 +54,7 @@ void create() {
 
 void display() {
     system("clear");
-    Product p_1;
-    FILE *fptr;
+    // Product p_1;
     fptr = fopen("products.dat","r");
     
     // printf("ID |Name  |  Des ")
@@ -76,8 +77,8 @@ void display() {
 
 
 void append() {
-    Product *p;
-    FILE *fptr;
+    // Product *p;
+
     char temp[2];
     int n;
     printf("\nHow many products you want to append : ");
@@ -115,8 +116,7 @@ int no_of_product() {
 }
 
 void search_product() {
-    Product p_1;
-    FILE *fp;
+    // Product p_1;
     int id, found = 0;
     fp = fopen("products.dat","r");
     printf("Enter the Product ID to Search : ");
@@ -145,8 +145,8 @@ void search_product() {
 
 
 void update_product() {
-    Product p_1;
-    FILE *fp, *ft;
+    // Product p_1;
+
     // ft is the temporary file for updating
     int id, found = 0;
     char temp[2];
@@ -191,8 +191,8 @@ void update_product() {
     }
 }
 void delete_product() {
-    Product p_1;
-    FILE *fp, *ft;
+    // Product p_1;
+
     // ft is the temporary file for updating
     int id, found = 0;
     char temp[2];
@@ -224,7 +224,8 @@ void delete_product() {
         fclose(fp);
         fclose(ft);
 
-    }}
+    }
+}
 
 
 
