@@ -1,11 +1,12 @@
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
-
-void addProduct(char*[]);
-void removeProduct(void);
-void search(void);
-void readFile(void);
+//#include<graphic.h>
+#ifdef _WIN32
+#define CLEAR "cls"
+#else
+#define CLEAR "clear"
+#endif
 FILE *fptr,*fp,*ft;
 
 typedef struct product
@@ -21,8 +22,11 @@ typedef struct product
 Product *p;
 Product p_1;
 
+void gotoxy(int x, int y) {
+    printf("%c[%d;%df", 0x1B, y, x);
+}
+
 void create() {
-    // Product *p;
     char temp[2];
     int n, i, j;
 
@@ -31,7 +35,7 @@ void create() {
 
     p = (Product*)calloc(n, sizeof(Product));
     fptr = fopen("products.dat","w");
-    for (int i = 0; i < n; i++)
+    for (i = 0; i < n; i++)
     {
         printf("Enter ID : ");
         scanf("%d",&p[i].id);
@@ -53,11 +57,11 @@ void create() {
 }
 
 void display() {
-    system("clear");
-    // Product p_1;
+	system(CLEAR);
+
     fptr = fopen("products.dat","r");
     
-    // printf("ID |Name  |  Des ")
+     printf("ID |Name  |  Des ");
     while (fread(&p_1,sizeof(Product), 1,fptr))
     {
         printf("\n%-5d|%-20s|%-50s|%8.2f|%4d", p_1.id, p_1.product_name, p_1.description, p_1.price, p_1.quantity);
@@ -69,25 +73,24 @@ void display() {
     scanf("%d",&flag);
     while (!flag)
     {
+    	printf("Go Back (1 = Yes, 0 = No) : ");
         scanf("%d",&flag);
     }
-    // system("clear");
-    
+
 }
 
 
 void append() {
-    // Product *p;
 
     char temp[2];
-    int n;
+    int n, i;
     printf("\nHow many products you want to append : ");
     scanf("%d",&n);
 
     p = (Product*)calloc(n, sizeof(Product));
     fptr = fopen("products.dat","a");
 
-    for (int i = 0; i < n; i++) {
+    for (i = 0; i < n; i++) {
         printf("Enter ID : ");
         scanf("%d",&p[i].id);
         scanf("%c",temp);
@@ -116,7 +119,7 @@ int no_of_product() {
 }
 
 void search_product() {
-    // Product p_1;
+
     int id, found = 0;
     fp = fopen("products.dat","r");
     printf("Enter the Product ID to Search : ");
@@ -145,7 +148,6 @@ void search_product() {
 
 
 void update_product() {
-    // Product p_1;
 
     // ft is the temporary file for updating
     int id, found = 0;
@@ -190,10 +192,9 @@ void update_product() {
 
     }
 }
-void delete_product() {
-    // Product p_1;
 
-    // ft is the temporary file for updating
+void delete_product() {
+
     int id, found = 0;
     char temp[2];
     fp = fopen("products.dat","r");
@@ -227,25 +228,35 @@ void delete_product() {
     }
 }
 
-
-
-int main()
-{   
-    int choice;
+// ADMIN_MENU
+void admin_menu () {
+	int choice, i;
+	int left = 1, top = 1, right = 200, bottom = 100;
+	
     do
     {
-        system("clear");
-        printf("\nWelcome to the Student Database\n");
-        printf("\n1.CREATE\n");
-        printf("2.DISPLAY\n");
-        printf("3.APPEND\n");
-        printf("4.NO OF PRODUCT\n");
-        printf("5.SEARCH PRODUCT\n");
-        printf("6.UPDATE PRODUCT\n");
-        printf("7.DELETE PRODUCT\n");
-        printf("0.EXIT\n");
-
-        printf("\nEnter choice : ");
+    	char options[9][50] = {
+			"Welcome to the E-Commerce Application",
+			"[1] CREATE\n",
+			"[2] DISPLAY\n",
+			"[3] APPEND\n",
+			"[4] NO OF PRODUCT\n",
+			"[5] SEARCH PRODUCT\n",
+       		"[6] UPDATE PRODUCT\n",
+			"[7] DELETE PRODUCT\n",
+			"[0] EXIT\n"
+		};
+        system(CLEAR);
+        
+		for(i = 0; i < 9; i++){
+			if(i == 0)
+				gotoxy(20,i+4);
+			else
+				gotoxy(10,i+5);
+			printf("%s",options[i]);
+		}
+		gotoxy(20,10 + 5);
+        printf("Enter choice : ");
         scanf("%d", &choice);
 
         switch (choice)
@@ -273,8 +284,13 @@ int main()
                 break;
         }
 
-    } while (choice !=0 );
+    } while (choice != 0 );
     
+}
 
+
+int main()
+{   
+    admin_menu();
     return 0;
 }
