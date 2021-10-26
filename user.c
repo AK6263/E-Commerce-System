@@ -98,33 +98,66 @@ int displayProduct() {
 
     fp = fopen("products.txt", "r");
 
-    gotoxy(17, 5);
-    printf("\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2 Product catalogue \xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2");
+    gotoxy(0, 5);
+    printf("::::::::::::::::::::::::::::::::::: Product catalogue :::::::::::::::::::::::::::::::::::::::");
 
     gotoxy(5, 6);
-    printf("======================================================================");
+    printf("========================================================================");
 
     gotoxy(5, 7);
     printf("Product ID\t\t Product Name\t\t Quantity\t Unit Price\n"); //TABLE TITLES !
 
     gotoxy(5, 8);
-    printf("======================================================================");
+    printf("========================================================================");
 
     gotoxy(0,10);
                 while(fscanf(fp, "%d %s %d %f", &a.id, a.name, &a.quantity, &a.price)==4)
                 {
                 printf("\t%-10d\t %-12s\t\t %8d\t %8.2f\n\n", a.id, a.name, a.quantity, a.price);
                 }
-
                 fclose(fp);
 
-    printf("\t\t \xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2");
+    printf(":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
 
-    printf("\nPress any key to return to Main Menu.");
+    gotoxy(5,22);
+    printf("1. Enter product id to add to cart");
+    gotoxy(5,24);
+    printf("2. Search");
+    gotoxy(5,26);
+    printf("3. Go back to main menu");
+    gotoxy(5,29);
+    printf("Enter your choice: ");
 
-    getch();
-
+    switch(getche())
+    {
+    case '1':
+    int id, quantity;
+    gotoxy(10,31);
+    printf("Product id: ");
+    scanf("%d",&id);
+    gotoxy(10,32);
+    printf("Quantity: ");
+    scanf("%d",&quantity);
+    break;
+    case '2':
+    search();
+    break;
+    case '3':
+    {
+    system("clear");
     usermenu();
+    }
+    default:
+    {
+    gotoxy(10,32);
+    printf("\aWrong Entry!!Please re-entered correct option ");
+    if(getch())
+    displayProduct();
+    }
+
+    }
+
+    //usermenu();
 
     return (0);
 }
@@ -139,3 +172,4 @@ int main(){
     usermenu();
     return 0;
 }
+
