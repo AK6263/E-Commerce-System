@@ -132,7 +132,7 @@ int addtocart(int i, int q){
                     if (a.id==i){
                     fprintf(fptr,"%-1d %-1s %1d %1f\n", a.id, a.name, q, a.price);
                     gotoxy(10,36);
-                    printf("Item added to cart");
+                    printf("Item added to cart\n\n");
                     }
                     /*
                     else{
