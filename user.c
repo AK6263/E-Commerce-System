@@ -7,6 +7,7 @@ int printcatalogue(void);
 int search(void);
 int addtocart(int i, int q);
 int printcart(void);
+int displayProduct(void);
 
 struct product {
     int quantity, reorder, i, id;
@@ -110,7 +111,7 @@ int printcart(){
                 {
                 printf("\t%-10d\t %-12s\t\t %8d\t %8.2f\n\n", a.id, a.name, a.quantity, a.price);
                 }
-                
+
                 fclose(fp);
 
     printf(":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n\n");
