@@ -79,6 +79,63 @@ void display() {
 
 }
 
+void new_append() {
+    system(CLEAR);
+    char temp[2];
+    int n,i, flag = 0, idflag = 1, app = 0;
+    n = 0;
+    //fptr = fopen("products.dat","a");
+    Product p;
+    do{
+        printf("Do you want to append a new product \n(Yes = 1, No = 0 [GO BACK])): ");
+        scanf("%d",&app);
+        if (app == 1) {
+            fptr = fopen("products.dat","a");
+            
+            do {
+                printf("Enter ID : ");
+                scanf("%d", &p.id);
+                if (check_id(p.id)) {
+                    printf("This id is already present use other id\n");
+                    idflag = 1;
+                } else {
+                    idflag = 0;
+                }
+            } while(idflag != 0);
+
+            scanf("%c", temp);
+            printf("Enter Name : ");
+            scanf("%[^\n]s", p.product_name);
+            scanf("%c", temp);
+            printf("Enter the Product Description : ");
+            scanf("%[^\n]s", p.description);
+            printf("Enter the Product Price (float) : ");
+            scanf("%f", &p.price);
+            printf("Enter the Product Quantity (int) : ");
+            scanf("%d", &p.quantity);
+            
+            fwrite(&p,sizeof(Product), 1, fptr);
+            fclose(fptr);
+            n++;
+            printf("Appended %d value/s to the database\n", n);
+        } else {
+            flag = 1;
+        }
+    }while(flag != 1);
+    //fclose(fptr);
+}
+
+int check_id(int id) {
+    int flag = 0;
+    fp = fopen("products.dat", "r");
+    while(fread(&p_1, sizeof(Product), 1, fp)) {
+        if (p_1.id == id) {
+            flag = 1;
+        }
+    }
+    fclose(fp);
+    return flag;
+}
 
 void append() {
 
@@ -139,8 +196,7 @@ void search_product() {
 
     int flag = 0;
     printf("Go Back (1 = Yes, 0 = No) : ");
-    scanf("%d",&flag);
-    while (!flag)
+    scanf("%d",&flag); while (!flag)
     {
         scanf("%d",&flag);
     }
@@ -268,7 +324,10 @@ void admin_menu () {
                 display();
                 break;
             case 3:
-                append();
+                //append();
+                
+                new_append();
+                
                 break;
             case 4:
                 no_of_product();
