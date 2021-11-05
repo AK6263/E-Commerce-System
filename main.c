@@ -87,12 +87,14 @@ void new_append() {
     //fptr = fopen("products.dat","a");
     Product p;
     do{
+        gotoxy(20, 2);
         printf("Do you want to append a new product \n(Yes = 1, No = 0 [GO BACK])): ");
         scanf("%d",&app);
         if (app == 1) {
             fptr = fopen("products.dat","a");
             
             do {
+                gotoxy(20,4);
                 printf("Enter ID : ");
                 scanf("%d", &p.id);
                 if (check_id(p.id)) {
@@ -104,20 +106,26 @@ void new_append() {
             } while(idflag != 0);
 
             scanf("%c", temp);
+            gotoxy(20,5);
             printf("Enter Name : ");
             scanf("%[^\n]s", p.product_name);
             scanf("%c", temp);
+            gotoxy(20,6);
             printf("Enter the Product Description : ");
             scanf("%[^\n]s", p.description);
+            gotoxy(20,7);
             printf("Enter the Product Price (float) : ");
             scanf("%f", &p.price);
+            gotoxy(20,8);
             printf("Enter the Product Quantity (int) : ");
             scanf("%d", &p.quantity);
             
             fwrite(&p,sizeof(Product), 1, fptr);
             fclose(fptr);
             n++;
+            gotoxy(10,10);
             printf("Appended %d value/s to the database\n", n);
+            system(CLEAR);
         } else {
             flag = 1;
         }
