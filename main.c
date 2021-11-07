@@ -333,9 +333,7 @@ void admin_menu () {
                 break;
             case 3:
                 //append();
-                
                 new_append();
-                
                 break;
             case 4:
                 no_of_product();
