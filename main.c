@@ -27,6 +27,18 @@ void gotoxy(int x, int y) {
     printf("%c[%d;%df", 0x1B, y, x);
 }
 
+int check_id(int id) {
+    int flag = 0;
+    fp = fopen("products.dat", "r");
+    while(fread(&p_1, sizeof(Product), 1, fp)) {
+        if (p_1.id == id) {
+            flag = 1;
+        }
+    }
+    fclose(fp);
+    return flag;
+}
+
 void create() {
     char temp[2];
     int n, i, j;
@@ -134,17 +146,7 @@ void new_append() {
     //fclose(fptr);
 }
 
-int check_id(int id) {
-    int flag = 0;
-    fp = fopen("products.dat", "r");
-    while(fread(&p_1, sizeof(Product), 1, fp)) {
-        if (p_1.id == id) {
-            flag = 1;
-        }
-    }
-    fclose(fp);
-    return flag;
-}
+
 
 void append() {
 
