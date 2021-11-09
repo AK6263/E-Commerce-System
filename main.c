@@ -376,32 +376,28 @@ void usermenu() {
         "[3] Close Application"
     };
     system(CLEAR);
-    for (int i = 0; i < 3; i++) {
-        gotoxy(20,i + 3);
-        printf("%s",options[i]);
-    }
-    gotoxy(20,13);
-    printf("Enter your choice : ");
-    switch (getche()) {
-        case '1':
-            display();
-            break;
-        case '2':
-            search_product();
-            break;
-        case '3':
-            {
-                system(CLEAR);
-                exit(0);
-            }
-        default:
-            {
-                gotoxy(10,23);
-                printf("\aWrong Entry !! Please re-entered correct option");
-                if(getch())
-                    usermenu;
-            }
-    }
+    do
+    {
+        for (int i = 0; i < 3; i++) {
+            gotoxy(20,i + 3);
+            printf("%s",options[i]);
+        }
+        gotoxy(20,13);
+        printf("Enter your choice : ");
+
+        switch (getche())
+        {
+            case '1':
+                display();
+                break;
+            case '2':
+                search();
+                break;
+            default:
+                choice = 0;
+                break;
+        }
+    } while (choice != 0);
 }
 
 int main()
