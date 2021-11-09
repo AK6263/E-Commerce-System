@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<termios.h>
 #include<string.h>
 #include<stdlib.h>
 //#include<graphic.h>
@@ -24,6 +25,30 @@ Product p_1;
 
 void gotoxy(int x, int y) {
     printf("%c[%d;%df", 0x1B, y, x);
+}
+
+int getch(void) {
+    struct termios oldattr, newattr;
+    int ch;
+    tcgetattr(STDIN_FILENO, &oldattr);
+    newattr = oldattr;
+    newattr.c_lflag &= ~(ICANON | ECHO);
+    tcsetattr(STDIN_FILENO, TCSANOW, &newattr);
+    ch = getchar();
+    tcsetattr(STDIN_FILENO, TCSANOW, &oldattr);
+    return ch;
+}
+
+int getche(void) {
+    struct termios oldattr, newattr;
+    int ch;
+    tcgetattr(STDIN_FILENO, &oldattr);
+    newattr = oldattr;
+    newattr.c_lflag &= ~(ICANON);
+    tcsetattr(STDIN_FILENO, TCSANOW, &newattr);
+    ch = getchar();
+    tcsetattr(STDIN_FILENO, TCSANOW, &oldattr);
+    return ch;
 }
 
 void create() {
@@ -292,6 +317,17 @@ void delete_product() {
     }
 }
 
+int addtocart(int i, int q) {
+    FILE *fp, *fptr;
+    struct product b;
+    char buf[1000];
+    char true;
+    fp = fopen("products.txt","r");
+    fptr = fopen("cart.txt","a");
+    fclose(fptr);
+    fclose(fp);
+}
+
 // ADMIN_MENU
 void admin_menu () {
 	int choice, i;
@@ -353,9 +389,46 @@ void admin_menu () {
     
 }
 
+void usermenu() {
+    int choice;
+    char options[4][30] = {
+        "MAIN MENU",
+        "[1] View Catalogue",
+        "[2] Search Products",
+        "[3] Close Application"
+    };
+    system(CLEAR);
+    for (int i = 0; i < 3; i++) {
+        gotoxy(20,i + 3);
+        printf("%s",options[i]);
+    }
+    gotoxy(20,13);
+    printf("Enter your choice : ");
+    switch (getche()) {
+        case '1':
+            display();
+            break;
+        case '2':
+            search_product();
+            break;
+        case '3':
+            {
+                system(CLEAR);
+                exit(0);
+            }
+        default:
+            {
+                gotoxy(10,23);
+                printf("\aWrong Entry !! Please re-entered correct option");
+                if(getch())
+                    usermenu;
+            }
+    }
+}
 
 int main()
 {   
-    admin_menu();
+    //admin_menu();
+    usermenu();
     return 0;
 }
