@@ -6,14 +6,14 @@
       * fix a <i>time slot</i>
       * check availability of delivery van/ delivery facility
   * Should proceed to billing
-  * Status: <i>Needs cross checking</i>
+  * Status: <i>Works</i>
   * Modification needed, ref to ToDo
 * ```billing.c```
   * Is supposed to produce a bill...
   * And append the purchase details to a purchase-history doc
   * Generates a receipt in txt format, and displays on the CLI as well
   * Should come back to ```user.c``` after termination
-  * Status: <i>Needs cross checking</i>
+  * Status: <i>Works</i>
 ## Comments
 
 * ```time.txt``` (availability of delivery van in a particular slot) can be modified
