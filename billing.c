@@ -85,7 +85,7 @@ int main()
     struct invoice new_invoice;
 
     //accessing the cart text file
-    FILE *fp_cart = fopen("products.txt", "r");
+    FILE *fp_cart = fopen("cart.txt", "r");
 
     //dashboard
     printf("\t ======================Aapki Dukaan========================");    
