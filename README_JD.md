@@ -21,5 +21,5 @@
 * ```invoices.txt``` contain entire the purchase history
 
 ## ToDo
-- [ ] ```delivery.c```: address should be set from a list (as the assignment suggests)
+
 - [ ] ```delivery.c```: address to be passed to the billing stage
