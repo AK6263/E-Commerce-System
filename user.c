@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <termios.h>
 #include <unistd.h>
+#include <string.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 int printcatalogue(void);
 int search(void);
@@ -9,11 +11,14 @@ int addtocart(int i, int q);
 int printcart(void);
 int displayProduct(void);
 
-struct product {
-    int quantity, reorder, i, id;
+typedef struct product
+{
     char name[20];
+    int id;
+    int quantity;
     float price;
-}a,b;
+    char description[100];
+}Product;
 
 // gotoxy() function definition
 void gotoxy(int x, int y){
@@ -72,7 +77,7 @@ void usermenu(){
     default:
     {
     gotoxy(10,23);
-    printf("\aWrong Entry!!Please re-entered correct option");
+    printf("\nWrong Entry!!Please re-entered correct option");
     if(getch())
     usermenu();
     }
@@ -86,64 +91,90 @@ int search(){
 }
 
 int printcart(){
-        FILE *fp;
+    FILE *fp;
     struct product a;
+    char line[200];
 
     char true;
     system("clear");
 
-    fp = fopen("cart.txt", "r");
+    fp = fopen("cart.csv", "r");
 
     gotoxy(0, 5);
-    printf("::::::::::::::::::::::::::::::::::: Product catalogue :::::::::::::::::::::::::::::::::::::::");
+    printf("::::::::::::::::::::::::::::::::::: Cart :::::::::::::::::::::::::::::::::::::::::::::::::::::");
 
-    gotoxy(5, 6);
-    printf("========================================================================");
+    gotoxy(0, 7);
+    printf("==============================================================================================");
 
-    gotoxy(5, 7);
-    printf("Product ID\t\t Product Name\t\t Quantity\t Unit Price\n"); //TABLE TITLES !
+    gotoxy(0, 8);
+    printf("Product ID\t  Product Name\t       Quantity\t           Price\t\t Description"); //TABLE TITLES !
 
-    gotoxy(5, 8);
-    printf("========================================================================");
+    gotoxy(0, 9);
+    printf("==============================================================================================");
 
-    gotoxy(0,10);
-                while(fscanf(fp, "%d %s %d %f", &a.id, a.name, &a.quantity, &a.price)==4)
+    gotoxy(5,10);
+                while (fgets(line,sizeof(line),fp))
                 {
-                printf("\t%-10d\t %-12s\t\t %8d\t %8.2f\n\n", a.id, a.name, a.quantity, a.price);
-                }
+                    char *token;
+                    token = strtok(line, ",");
+                    while (token!= NULL) 
+                    {
+                        printf ("%-20s", token);
+                        token = strtok(NULL, ",");
+                    }
+                    printf("\n");
+                }            
 
                 fclose(fp);
-
-    printf(":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n\n");
-    return 0;
 }
 
 int addtocart(int i, int q){
     FILE *fp, *fptr;
+    int n,j;
     struct product a;
-    //printf("%d\n",id);
-    struct product b;
-    char buf[1000];
-    char true;
-    fp = fopen("products.txt","r");
-    fptr = fopen("cart.txt","a");
+    Product *p;
+    p = (Product*)calloc(n, sizeof(Product));
+    fp = fopen("products.dat","r");
+    fptr = fopen("cart.csv","a");
     
-    while(fscanf(fp, "%d %s %d %f", &a.id, a.name, &a.quantity, &a.price)==4)
+
+            while (fread(&a,sizeof(Product), 1,fp))
                 {
+                    
                     if (a.id==i){
-                    fprintf(fptr,"%-1d %-1s %1d %1f\n", a.id, a.name, q, a.price);
-                    gotoxy(10,36);
-                    printf("Item added to cart\n\n");
+                    fprintf(fptr,"%-1d,%-1s,%1d,%1f,%-1s\n", a.id, a.name, q, a.price, a.description);
+                    
                     }
+                    
+                    gotoxy(5,36);
+                    
                     /*
                     else{
                         printf("\nEnter valid id");
                         displayProduct();
                     }*/
                 }
+                printf("Item added to cart\n\n");
     fclose(fp);
     fclose(fptr);
+        
+        
+        switch(getche())
+        {
+        default:
+        {
+        gotoxy(10,38);
+        printf("\nPress any key to go back");
+        if(getch())
+        displayProduct();
+        }
+
+        }
+                //if(getch())
+                //displayProduct();
+
     
+
     return 0;
 }
 
@@ -154,28 +185,30 @@ int displayProduct() {
     char true;
     system("clear");
 
-    fp = fopen("products.txt", "r");
+    fp = fopen("products.dat", "rb");
 
     gotoxy(0, 5);
-    printf("::::::::::::::::::::::::::::::::::: Product catalogue :::::::::::::::::::::::::::::::::::::::");
+    printf("::::::::::::::::::::::::::::::::::: Product catalogue :::::::::::::::::::::::::::::::::::::::::::::::::::::");
 
     gotoxy(5, 6);
-    printf("========================================================================");
+    printf("==============================================================================================");
 
     gotoxy(5, 7);
-    printf("Product ID\t\t Product Name\t\t Quantity\t Unit Price\n"); //TABLE TITLES !
+    printf("Product ID\t\tProduct Name\t\tQuantity\t  Price\t        Description"); //TABLE TITLES !
 
     gotoxy(5, 8);
-    printf("========================================================================");
+    printf("==============================================================================================");
 
-    gotoxy(0,10);
-                while(fscanf(fp, "%d %s %d %f", &a.id, a.name, &a.quantity, &a.price)==4)
+    gotoxy(5,9);
+                while (fread(&a,sizeof(Product), 1,fp))
                 {
-                printf("\t%-10d\t %-12s\t\t %8d\t %8.2f\n\n", a.id, a.name, a.quantity, a.price);
+                printf("\n\t%-2d\t\t%-20s\t%4d\t\t%8.2f\t%-50s", a.id, a.name,a.quantity, a.price, a.description);
                 }
+                
+
                 fclose(fp);
 
-    printf(":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
+    printf("::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
 
     gotoxy(5,22);
     printf("1. Enter product id to add to cart");
@@ -191,6 +224,8 @@ int displayProduct() {
     switch(getche())
     {
     case '1':
+    goto Cleanup;
+    Cleanup:;
     int id, quantity;
     gotoxy(10,33);
     printf("Product id: ");
@@ -221,16 +256,11 @@ int displayProduct() {
 
     }
 
-    //usermenu();
-
     return (0);
 }
 
-int main(){   
-    //char product_name[100];
-    //float price;
-    //int id, quantity;
-    //Product product;
+int main(){
+
     usermenu();
     return 0;
 }
