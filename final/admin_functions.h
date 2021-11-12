@@ -222,7 +222,6 @@ void delete_product() {
 // ADMIN_MENU
 void admin_menu () {
 	int choice, i;
-	int left = 1, top = 1, right = 200, bottom = 100;
 	
     do
     {
