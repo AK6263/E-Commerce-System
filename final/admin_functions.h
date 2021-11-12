@@ -1,3 +1,4 @@
+void admin_menu();
 // CREATE FUNCTION
 void create() {
     char temp[2];

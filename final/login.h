@@ -103,6 +103,7 @@ void signin(int n) {
     LOGIN l_1;
     char username[20], password[20];
     int flag = 0;
+    int admin_val=0;
     fptr = fopen("logins.dat", "r");
     printf("\nEnter USERNAME : ");
     scanf("%[^\n]s", username);
@@ -119,6 +120,11 @@ void signin(int n) {
             // printf("\nPASSSWORD is VALID\n");
             flag++;
         }
+        if (flag==2) {
+            admin_val = l_1.admin;
+            break;
+        }
+        
     }
     if (flag == 0)
     {
@@ -128,7 +134,7 @@ void signin(int n) {
         printf("\nUSERNAME OR PASSWORD IS INCORRECT\n");
     } else {
         printf("\nLOGIN Successful\n");
-        if (l_1.admin == 1) {
+        if (admin_val == 1) {
             // Go To ADMIN MENU
             admin_menu();
         } else {
