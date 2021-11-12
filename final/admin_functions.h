@@ -54,7 +54,7 @@ void display() {
 }
 
 // NEW APPEND FUNCTION
-void new_append() {
+void append() {
     system(CLEAR);
     char temp[2];
     int n,i, flag = 0, idflag = 1, app = 0;
@@ -106,37 +106,6 @@ void new_append() {
         }
     }while(flag != 1);
     //fclose(fptr);
-}
-
-// APPEND FUNCTION
-void append() {
-
-    char temp[2];
-    int n, i;
-    printf("\nHow many products you want to append : ");
-    scanf("%d",&n);
-
-    p = (Product*)calloc(n, sizeof(Product));
-    fptr = fopen("products.dat","a");
-
-    for (i = 0; i < n; i++) {
-        printf("Enter ID : ");
-        scanf("%d",&p[i].id);
-        scanf("%c",temp);
-        printf("Enter Name : ");
-        scanf("%[^\n]s", p[i].product_name);
-        scanf("%c",temp);
-        printf("Enter the Product Description : ");
-        scanf("%[^\n]s", p[i].description);
-        printf("Enter the Product Price (float) : ");
-        scanf("%f", &p[i].price);
-        printf("Enter the Product Quantity (int) : ");
-        scanf("%d", &p[i].quantity);
-
-        fwrite(&p[i], sizeof(Product), 1, fptr);
-    }
-    fclose(fptr);
-
 }
 
 // SEARCH FUNCTION
@@ -250,15 +219,6 @@ void delete_product() {
     }
 }
 
-// NO OF PRODUCT
-int no_of_product() {
-    /*
-        Get the id of the last product so you can 
-        put the id automatically instead of asking
-    */
-    return 0;
-}
-
 // ADMIN_MENU
 void admin_menu () {
 	int choice, i;
@@ -271,10 +231,9 @@ void admin_menu () {
 			"[1] CREATE\n",
 			"[2] DISPLAY\n",
 			"[3] APPEND\n",
-			"[4] NO OF PRODUCT\n",
-			"[5] SEARCH PRODUCT\n",
-       		"[6] UPDATE PRODUCT\n",
-			"[7] DELETE PRODUCT\n",
+			"[4] SEARCH PRODUCT\n",
+       		"[5] UPDATE PRODUCT\n",
+			"[6] DELETE PRODUCT\n",
 			"[0] EXIT\n"
 		};
         system(CLEAR);
@@ -299,20 +258,21 @@ void admin_menu () {
                 display();
                 break;
             case 3:
-                new_append();
+                append();
                 break;
             case 4:
-                no_of_product();
-                break;
-            case 5:
                 search_product();
                 break;
-            case 6:
+            case 5:
                 update_product();
                 break;
-            case 7:
+            case 6:
                 delete_product();
                 break;
+            default:
+                choice = 0;
+                break;
+
         }
     } while (choice != 0 );
 }
