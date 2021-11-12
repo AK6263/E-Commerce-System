@@ -35,7 +35,7 @@ void display() {
 
     fptr = fopen("products.dat","r");
     
-     printf("ID |Name  |  Des ");
+    printf("ID |Name  |  Des ");
     while (fread(&p_1,sizeof(Product), 1,fptr))
     {
         printf("\n%-5d|%-20s|%-50s|%8.2f|%4d", p_1.id, p_1.product_name, p_1.description, p_1.price, p_1.quantity);
@@ -50,7 +50,6 @@ void display() {
     	printf("Go Back (1 = Yes, 0 = No) : ");
         scanf("%d",&flag);
     }
-
 }
 
 // NEW APPEND FUNCTION
@@ -219,6 +218,14 @@ void delete_product() {
     }
 }
 
+void exit_admin() {
+    int exit = 0;
+    printf("You have exited the program. Press 1 to Exit.\n");
+    scanf("%d", &exit);
+    if(!exit) {
+        admin_menu();
+    }
+}
 // ADMIN_MENU
 void admin_menu () {
 	int choice, i;
@@ -274,4 +281,5 @@ void admin_menu () {
 
         }
     } while (choice != 0 );
+
 }
