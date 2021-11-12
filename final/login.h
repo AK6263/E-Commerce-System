@@ -136,9 +136,11 @@ void signin(int n) {
         printf("\nLOGIN Successful\n");
         if (admin_val == 1) {
             // Go To ADMIN MENU
+            // scanf("%c",temp);
             admin_menu();
         } else {
             // GO To User Menu
+            scanf("%c",temp);
             user_menu();
         } 
     }
