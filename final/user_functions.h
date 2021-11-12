@@ -19,15 +19,13 @@ void addtocart(int i, int q) {
             gotoxy(10,36);
             printf("Item added to the cart\n\n");
         }
-        
     }
-
     fclose(fptr);
     fclose(fp);
 }
 
 //  USER MENU
-void usermenu() {
+void user_menu() {
     int choice;
     char options[4][30] = {
         "MAIN MENU",

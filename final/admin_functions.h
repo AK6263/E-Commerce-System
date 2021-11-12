@@ -250,6 +250,15 @@ void delete_product() {
     }
 }
 
+// NO OF PRODUCT
+int no_of_product() {
+    /*
+        Get the id of the last product so you can 
+        put the id automatically instead of asking
+    */
+    return 0;
+}
+
 // ADMIN_MENU
 void admin_menu () {
 	int choice, i;
