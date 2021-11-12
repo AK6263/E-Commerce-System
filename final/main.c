@@ -1,5 +1,5 @@
 #include<stdio.h>
-#include<conio.h>
+// #include<conio.h>
 #include<string.h>
 #include<stdlib.h>
 //#include<graphic.h>
@@ -41,7 +41,7 @@ int check_id(int id) {
 
 #include "admin_functions.h"
 #include "user_functions.h"
-
+#include "login.h"
 int no_of_product() {
     /*
         Get the id of the last product so you can 
@@ -56,7 +56,8 @@ void search() {
 
 int main()
 {   
-    admin_menu();
+    // admin_menu();
+    login();
     // usermenu();
     return 0;
 }
