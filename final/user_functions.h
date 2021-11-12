@@ -43,7 +43,7 @@ void user_menu() {
         }
         gotoxy(20,13);
         printf("Enter your choice : ");
-
+        scanf("%d", choice);
         switch (choice)
         {
             case 1:

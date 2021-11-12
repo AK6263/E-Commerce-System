@@ -2,9 +2,8 @@ typedef struct logins
 {
     char uname[20];
     int admin;
-    // int uname_size;
     char pass[20];
-    // int pass_size;
+
 }LOGIN;
 
 char temp[2];
@@ -18,6 +17,7 @@ void signin(int n);
 
 // #include "regid"
 void login() {
+    
     int option = 0;
     
     printf("Give Option\n");
@@ -48,9 +48,11 @@ void login() {
 
 void admin_login() {
     int option = 0;
-
     do
     {
+        system(CLEAR);
+        printf("WELCOME TO ADMIN LOGIN\n");
+        
         printf("Give Option\n");
         printf("[1] Sign In\n");
         printf("[2] Register\n");
@@ -65,6 +67,9 @@ void admin_login() {
         case 2:
             register_admin();
             break;
+        default:
+            option = 0;
+            break;
         }
     } while (option != 0);
     // create_logins();
@@ -73,6 +78,7 @@ void admin_login() {
 }
 
 void user_login() {
+    system(CLEAR);
     int option = 0;
     printf("\n\nUSER LOGIN SCREEN\n");
     do
@@ -91,6 +97,9 @@ void user_login() {
         case 2:
             register_user();
             break;
+        default:
+            option = 0;
+            break;
         }
     } while (option != 0);
     // create_logins();
@@ -99,6 +108,7 @@ void user_login() {
 }
 
 void signin(int n) {
+    system(CLEAR);
     printf("\nSign In Page\n");
     LOGIN l_1;
     char username[20], password[20];

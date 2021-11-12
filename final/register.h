@@ -1,4 +1,6 @@
 void register_admin() {
+    system(CLEAR);
+    printf("\nWELCOME TO ADMIN REGISTRATION\n");
     char secret[] = "Hentai";
     char input_secret[20];
 
@@ -24,7 +26,8 @@ void register_admin() {
 }
 
 void register_user() {
-    printf("\n\nUSER REGISTRATION\n");
+    system(CLEAR);
+    printf("\nWELCOME TO USER REGISTRATION\n");
     LOGIN l_1;
     // scanf("%c", temp);
 
