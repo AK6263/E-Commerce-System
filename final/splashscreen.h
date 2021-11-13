@@ -17,4 +17,6 @@ void splash_screen() {
         }
         printf("\n");
     }
+    gotoxy(9,2);
+    printf("!! Welcome To C-Kart !!");
 }
