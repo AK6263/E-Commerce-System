@@ -676,7 +676,7 @@ int generate_bill(char address[100])
 
         case 3:
             //printf("Redirecting to the homepage...\n");
-            int val;
+            // int val;
             printf("Press any key to go back\n");
             if(getch)
             usermenu();

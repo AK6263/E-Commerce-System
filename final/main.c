@@ -38,6 +38,7 @@ int main()
     system(CLEAR);
     
     login();
+    // placeorder();
     // printf("LOGIN");
     // usermenu();
     // admin_menu();

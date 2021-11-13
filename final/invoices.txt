@@ -1,0 +1,9 @@
+8 Nov_14_2021    1621.36
+Corn Flakes,1,2
+Corn Flakes,1,2
+Corn Flakes,1,1
+Lays,2,3
+Lays,2,34
+Pepsi,5,23
+Heinz Can of Beans,4,12
+Lays,2,2

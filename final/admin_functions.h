@@ -94,7 +94,13 @@ void append() {
                     idflag = 0;
                 }
             } while(idflag != 0);
-
+            gotoxy(0,5);
+            for (int k = 0; k < 41; k++)
+            {
+                printf(" ");
+            }
+            
+            printf(" ");
             scanf("%c", temp);
             gotoxy(20,5);
             printf("Enter Name : ");
