@@ -13,7 +13,7 @@ int displayProduct(void);
 
 typedef struct product
 {
-    char name[20];
+    char product_name[20];
     int id;
     int quantity;
     float price;
@@ -87,9 +87,110 @@ void usermenu(){
 
 int search(){
     system("clear");
+    Product p_1;
+    FILE *fp;
+    char n[30];
+    int id,value, found = 0;
+    fp = fopen("products.dat","r");
+    gotoxy(20,3);
+    printf("Enter the Product name to Search : ");
+    scanf("%[^\n]s",n);
+    int choice;
+    //scanf("%d", &id);
+
+    while (fread(&p_1,sizeof(Product), 1,fp))
+    {
+        value=strcmp(n,p_1.product_name);
+        if (value==0) {
+            found = 1;
+            //printf("%-5d|%-20s|%-50s|%8.2f|%4d\n", p_1.id, p_1.product_name, p_1.description, p_1.price, p_1.quantity);
+            gotoxy(0, 5);
+            printf("    ::::::::::::::::::::::::::::::::::: Product catalogue :::::::::::::::::::::::::::::::::::::::::::::::::::::");
+
+            gotoxy(5, 6);
+            printf("===========================================================================================================");
+
+            gotoxy(5, 7);
+            printf("Product ID\t\tProduct Name\t\tQuantity\t  Price\t        Description"); //TABLE TITLES !
+
+            gotoxy(5, 8);
+            printf("===========================================================================================================");
+            gotoxy(5,9);
+            printf("\n\t%-2d\t\t%-20s\t%4d\t\t%8.2f\t%-50s", p_1.id, p_1.product_name,p_1.quantity, p_1.price, p_1.description);
+
+            gotoxy(5,13);
+            printf("1. Add product to the cart");
+            gotoxy(5,15);
+            printf("2. View product catalogue");
+            gotoxy(5,17);
+            printf("3. Go back to main menu");
+            gotoxy(5,19);
+            printf("Enter your choice: ");
+            scanf("%d",&choice);
+            switch(choice)
+            {
+                case 1:{
+                goto Cleanup;
+                Cleanup:;
+                int quantity;
+                //printf("Product id: ");
+                //scanf("%d",&id);
+                gotoxy(10,21);
+                printf("Quantity: ");
+                scanf("%d",&quantity);
+                addtocart(p_1.id,quantity);
+                break;
+                }
+                case 2:{
+                goto Cleanup1;
+                Cleanup1:;
+                displayProduct();
+                break;
+                }
+                case 3:{
+                goto Cleanup2;
+                Cleanup2:;
+                usermenu();
+                break;
+                }
+                case 4:
+                {
+                goto Cleanup3;
+                Cleanup3:;
+                system("clear");
+                usermenu();
+                }
+                default:
+                {
+                goto Cleanup4;
+                Cleanup4:;
+                gotoxy(10,32);
+                printf("\aWrong Entry!!Please re-entered correct option ");
+                if(getch())
+                displayProduct();
+                }
+
+            }
+        }
+    }
+    if(!found) {
+        printf("\nProduct not found\n");
+        //sleep(2);
+        //goto Cleanup5;
+        //Cleanup5:;
+        //search();
+    }
+    fclose(fp);
+    /*
+    int flag = 0;
+    printf("Go Back (1 = Yes, 0 = No) : ");
+    scanf("%d",&flag); while (!flag)
+    {
+        scanf("%d",&flag);
+    }
+    */
     return 0;
 }
-
 int printcart(){
     FILE *fp;
     struct product a;
@@ -142,11 +243,11 @@ int addtocart(int i, int q){
                 {
                     
                     if (a.id==i){
-                    fprintf(fptr,"%-1d,%-1s,%1d,%1f,%-1s\n", a.id, a.name, q, a.price, a.description);
+                    fprintf(fptr,"%-1d,%-1s,%1d,%1f,%-1s\n", a.id, a.product_name, q, a.price, a.description);
                     
                     }
                     
-                    gotoxy(5,36);
+                    //gotoxy(5,36);
                     
                     /*
                     else{
@@ -154,7 +255,7 @@ int addtocart(int i, int q){
                         displayProduct();
                     }*/
                 }
-                printf("Item added to cart\n\n");
+                printf("\n\nItem added to cart\n\n");
     fclose(fp);
     fclose(fptr);
         
@@ -163,8 +264,8 @@ int addtocart(int i, int q){
         {
         default:
         {
-        gotoxy(10,38);
-        printf("\nPress any key to go back");
+        //gotoxy(10,38);
+        printf("\n\nPress any key to go back");
         if(getch())
         displayProduct();
         }
@@ -202,7 +303,7 @@ int displayProduct() {
     gotoxy(5,9);
                 while (fread(&a,sizeof(Product), 1,fp))
                 {
-                printf("\n\t%-2d\t\t%-20s\t%4d\t\t%8.2f\t%-50s", a.id, a.name,a.quantity, a.price, a.description);
+                printf("\n\t%-2d\t\t%-20s\t%4d\t\t%8.2f\t%-50s", a.id, a.product_name,a.quantity, a.price, a.description);
                 }
                 
 
