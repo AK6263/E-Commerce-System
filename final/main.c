@@ -12,7 +12,7 @@ void search() {
 int main()
 {   
     int choice;
-    // admin_menu();
+    
     do
     {
         splash_screen();
@@ -25,14 +25,21 @@ int main()
             system(CLEAR);
             exit(0);
             break;
-        default:
+        case 1:
             choice = 1;
             break;
+        default:
+            gotoxy(5,8);
+            printf("Invalid Option !!");
+            break;
         }
+        
     } while (choice != 1);
     system(CLEAR);
-    // printf("LOGIN");
+    
     login();
+    // printf("LOGIN");
     // usermenu();
+    // admin_menu();
     return 0;
 }

@@ -291,10 +291,12 @@ void admin_menu () {
             case 6:
                 delete_product();
                 break;
-            default:
-                choice = 0;
+            case 0:
                 break;
-
+            default:
+                gotoxy(20,10+6);
+                printf("Invalid Option !!");
+                break;
         }
     } while (choice != 0 );
 

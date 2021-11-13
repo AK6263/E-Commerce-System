@@ -85,8 +85,11 @@ void admin_login() {
         case 2:
             register_admin();
             break;
+        case 0:
+            break;
         default:
-            option = 0;
+            gotoxy(5,10);
+            printf("Invalid Option !!");
             break;
         }
     } while (option != 0);
@@ -124,8 +127,11 @@ void user_login() {
         case 2:
             register_user();
             break;
+        case 0:
+            break;
         default:
-            option = 0;
+            gotoxy(5,10);
+            printf("Invalid Option !!");
             break;
         }
     } while (option != 0);
