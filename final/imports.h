@@ -1,6 +1,10 @@
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
+#include <unistd.h>
+#include <termios.h>
+#include <unistd.h>
+
 #ifdef _WIN32
 #define CLEAR "cls"
 #else
