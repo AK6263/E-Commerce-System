@@ -30,6 +30,51 @@ void create() {
     fclose(fptr);
 }
 
+void new_create() {
+    char temp[2];
+    int n = 5, i, j;
+    char prod_names[5][20] = {
+        "Corn Flakes",
+        "Lays",
+        "Monster Energy",
+        "Heinz Can of Beans",
+        "Pepsi"
+    };
+    char prod_description[5][100] = {
+        "Nourishing and Tasty ready-2-eat breakfast",
+        "Tasty Snack",
+        "A can of the meanest energy drink on the planet",
+        "Its Everywhere",
+        "Soft Drink Better than Cola"
+    };
+    int prod_quantity[] = {
+        40,
+        55,
+        60,
+        12,
+        10
+    };
+    float prod_prices[] = {
+        20.00,
+        12.00,
+        60.45,
+        45.23,
+        22.20
+    };
+    p = (Product*)calloc(n, sizeof(Product));
+    fptr = fopen("products.dat","w");
+    for (i = 0; i < n; i++)
+    {
+        p[i].id = i + 1;
+        strcpy(p[i].product_name, prod_names[i]);
+        strcpy(p[i].description, prod_description[i]);
+        p[i].price = prod_prices[i];
+        p[i].quantity = prod_quantity[i];
+        fwrite(&p[i], sizeof(Product), 1, fptr);
+    }
+    fclose(fptr);
+}
+
 // DISPLAY FUNCTION
 void display() {
 	system(CLEAR);
@@ -235,7 +280,7 @@ void admin_menu () {
     {
     	char options[9][50] = {
 			"Welcome to the E-Commerce Application",
-			"[1] CREATE\n",
+			"[1] CREATE INITIAL DATA FILE\n",
 			"[2] DISPLAY\n",
 			"[3] APPEND\n",
 			"[4] SEARCH PRODUCT\n",
@@ -259,7 +304,8 @@ void admin_menu () {
         switch (choice)
         {
             case 1:
-                create();
+                // create();
+                new_create();
                 break;
             case 2:
                 display();
