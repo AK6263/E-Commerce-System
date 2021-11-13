@@ -28,7 +28,7 @@ void genBillheader(FILE *STREAM, char name[30], char date[30])
     printf("----------------------\nItems\t\tQty\t\tTotal\t\t");
     printf("\n----------------------\n\n");    
 
-    fprintf(STREAM, "\t Aapki Dukaan\n\t ----------------------");
+    //fprintf(STREAM, "\t Aapki Dukaan\n\t ----------------------");
     fprintf(STREAM, "\nOrder placed on: %s\nInvoice To : %s\n", date, name);
     fprintf(STREAM, "----------------------\nItems\t\tQty\t\tTotal\t\t");
     fprintf(STREAM, "\n----------------------\n\n"); 
