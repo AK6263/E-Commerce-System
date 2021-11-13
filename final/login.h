@@ -20,13 +20,23 @@ void login() {
     
     int option = 0;
     
-    printf("Give Option\n");
-    printf("[1] Admin\n");
-    printf("[2] User\n");
-    printf("[0] Exit\n");
-    
     do
-    {
+    {   
+        splash_screen();
+        gotoxy(10,2);
+        printf("LOGIN MENU");
+        char UI[4][20] = {
+            "Give Option\n",
+            "[1] Admin\n",
+            "[2] User\n",
+            "[0] Exit\n"
+        };
+        for (int i = 0; i < 4; i++)
+        {
+            gotoxy(5,4 + i);
+            printf("%s",UI[i]);
+        }
+        gotoxy(5,9);
         printf("Option : ");
         scanf("%d",&option);
         scanf("%c", temp);
@@ -51,12 +61,20 @@ void admin_login() {
     do
     {
         system(CLEAR);
+        splash_screen();
+        gotoxy(7,2);
         printf("WELCOME TO ADMIN LOGIN\n");
-        
-        printf("Give Option\n");
-        printf("[1] Sign In\n");
-        printf("[2] Register\n");
-        printf("[0] Exit\n");
+        char UI[4][20] = {
+            "Give Option\n",
+            "[1] Sign In\n",
+            "[2] Register\n",
+            "[0] Exit\n"
+        };
+        for (int i = 0; i < 4; i++) {
+            gotoxy(5,4 + i);
+            printf("%s",UI[i]);
+        }
+        gotoxy(5,9);
         printf("Option : ");
         scanf("%d",&option);
         scanf("%c",temp);
@@ -78,15 +96,24 @@ void admin_login() {
 }
 
 void user_login() {
-    system(CLEAR);
     int option = 0;
-    printf("\n\nUSER LOGIN SCREEN\n");
     do
     {
-        printf("Give Option \n");
-        printf("[1] Sign In\n");
-        printf("[2] Register\n");
-        printf("[0] Exit\n");
+        system(CLEAR);
+        splash_screen();
+        gotoxy(10,2);
+        printf("WELCOME TO USER LOGIN\n");
+        char UI[4][20] = {
+            "Give Option\n",
+            "[1] Sign In\n",
+            "[2] Register\n",
+            "[0] Exit\n"
+        };
+        for (int i = 0; i < 4; i++) {
+            gotoxy(5,4 + i);
+            printf("%s",UI[i]);
+        }
+        gotoxy(5,9);
         printf("Option : ");
         scanf("%d",&option);
         scanf("%c",temp);
@@ -109,16 +136,20 @@ void user_login() {
 
 void signin(int n) {
     system(CLEAR);
-    printf("\nSign In Page\n");
+    splash_screen();
+    gotoxy(15,2);
+    printf("Sign In Page\n");
     LOGIN l_1;
     char username[20], password[20];
     int flag = 0;
     int admin_val=0;
     fptr = fopen("logins.dat", "r");
-    printf("\nEnter USERNAME : ");
+    gotoxy(3,4);
+    printf("Enter USERNAME : ");
     scanf("%[^\n]s", username);
     scanf("%c",temp);
-    printf("\nEnter PASSWORD : ");
+    gotoxy(3,5);
+    printf("Enter PASSWORD : ");
     scanf("%[^\n]s", password);
     scanf("%c",temp);
     while(fread(&l_1, sizeof(LOGIN), 1, fptr)) {
@@ -136,14 +167,15 @@ void signin(int n) {
         }
         
     }
+    gotoxy(3,8);
     if (flag == 0)
     {
-        printf("\nUSERNAME AND PASSWORD IS INCORRECT\n");
+        printf("USERNAME AND PASSWORD IS INCORRECT\n");
     } else if (flag == 1)
     {
-        printf("\nUSERNAME OR PASSWORD IS INCORRECT\n");
+        printf("USERNAME OR PASSWORD IS INCORRECT\n");
     } else {
-        printf("\nLOGIN Successful\n");
+        printf("LOGIN Successful Press enter\n");
         if (admin_val == 1) {
             // Go To ADMIN MENU
             // scanf("%c",temp);

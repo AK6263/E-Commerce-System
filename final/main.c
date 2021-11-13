@@ -1,10 +1,9 @@
 #include "imports.h"
+#include "splashscreen.h"
 #include "admin_functions.h"
 #include "user_functions.h"
 #include "login.h"
 #include "register.h"
-#include "splashscreen.h"
-
 
 void search() {
     system(CLEAR);
@@ -17,7 +16,7 @@ int main()
     do
     {
         splash_screen();
-        gotoxy(5, 10);
+        gotoxy(5, 6);
         printf("Press 1 to Enter 0 to Exit : ");
         scanf("%d", &choice);
         switch (choice)
