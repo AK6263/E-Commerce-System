@@ -2,36 +2,6 @@ void admin_menu();
 // CREATE FUNCTION
 void create() {
     char temp[2];
-    int n, i, j;
-
-    printf("\nEnter the number of products you be added : \n");
-    scanf("%d",&n);
-
-    p = (Product*)calloc(n, sizeof(Product));
-    fptr = fopen("products.dat","w");
-    for (i = 0; i < n; i++)
-    {
-        printf("Enter ID : ");
-        scanf("%d",&p[i].id);
-        scanf("%c",temp);
-        printf("Enter Name : ");
-        scanf("%[^\n]s", p[i].product_name);
-        scanf("%c",temp);
-        printf("Enter the Product Description : ");
-        scanf("%[^\n]s", p[i].description);
-        printf("Enter the Product Price (float) : ");
-        scanf("%f", &p[i].price);
-        printf("Enter the Product Quantity (int) : ");
-        scanf("%d", &p[i].quantity);
-
-        fwrite(&p[i], sizeof(Product), 1, fptr);
-    }
-    
-    fclose(fptr);
-}
-
-void new_create() {
-    char temp[2];
     int n = 5, i, j;
     char prod_names[5][20] = {
         "Corn Flakes",
@@ -304,8 +274,7 @@ void admin_menu () {
         switch (choice)
         {
             case 1:
-                // create();
-                new_create();
+                create();
                 break;
             case 2:
                 display();
