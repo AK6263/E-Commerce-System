@@ -10,6 +10,7 @@ An Online E-commerce System better than Amazon.
 - [ ] Make the user exit option so that the user goes back to the user login rather than exiting.
 - [ ] Write Documentation
 - [ ] Make UI Better @AK6263
+- [ ] Use Pointers whereever possible
 
 
 
