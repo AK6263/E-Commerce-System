@@ -29,7 +29,7 @@ int main()
             break;
         default:
             gotoxy(5,8);
-            system("COLOR 40");
+            // system("COLOR 40");
             printf("Invalid Option !!");
             break;
         }

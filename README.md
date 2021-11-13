@@ -1,6 +1,16 @@
 # E-Commerce-System
 An Online E-commerce System better than Amazon. Amazon ki maa ka ************. 
 
+# Changes to be made
+
+- [ ] USER -> DisplayProduct -> Extra endline
+- [ ] Correct rong Sepling and g
+- [ ] Make sure the user doesn't use quantity more than the defined quantity in `products.dat`
+- [ ] Subtract the quantity from `products.dat` after invoice is created
+- [ ] Make the user exit option so that the user goes back to the user login rather than exiting.
+
+
+
 ## To run
 
 Keep the working directory in E-Commerce-System
