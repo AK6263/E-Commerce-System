@@ -88,7 +88,7 @@ int main()
     FILE *fp_cart = fopen("cart.csv", "r");
 
     //dashboard
-    printf("\t ======================Aapki Dukaan========================");    
+    printf("\t =================================================");    
     printf("\n\n 1. Generate Invoice");
     printf("\n 2. Show all Invoices");
     printf("\n 3. Exit");
