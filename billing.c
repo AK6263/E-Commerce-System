@@ -23,7 +23,7 @@ void compact_string(char *pointer)
 //BILLING
 void genBillheader(FILE *STREAM, char name[30], char date[30])
 {
-    printf("\n\n\t Aapki Dukaan\n---------------------------");
+    printf("\n----------------------------------");
     printf("\nOrder placed on: %s\nInvoice To : %s\n", date, name);
     printf("----------------------\nItems\t\tQty\t\tTotal\t\t");
     printf("\n----------------------\n\n");    
