@@ -1,5 +1,5 @@
 # E-Commerce-System
-An Online E-commerce System better than Amazon. Amazon ki maa ka ************. 
+An Online E-commerce System better than Amazon.
 
 # Changes to be made
 
@@ -8,6 +8,8 @@ An Online E-commerce System better than Amazon. Amazon ki maa ka ************.
 - [ ] Make sure the user doesn't use quantity more than the defined quantity in `products.dat`
 - [ ] Subtract the quantity from `products.dat` after invoice is created
 - [ ] Make the user exit option so that the user goes back to the user login rather than exiting.
+- [ ] Write Documentation
+- [ ] Make UI Better @AK6263
 
 
 
