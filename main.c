@@ -1,7 +1,6 @@
 #include "imports.h"
 #include "splashscreen.h"
 #include "admin_functions.h"
-// #include "user_functions.h"
 #include "user.h"
 #include "login.h"
 #include "register.h"

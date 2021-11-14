@@ -6,34 +6,34 @@
 #include <unistd.h>
 
 #ifdef _WIN32
-#define CLEAR "cls"
-#include "conio.h"
+    #define CLEAR "cls"
+    #include "conio.h"
 #else
 #include <termios.h>
-#define CLEAR "clear"
-int getch(void){
-    struct termios oldattr, newattr;
-    int ch;
-    tcgetattr( STDIN_FILENO, &oldattr );
-    newattr = oldattr;
-    newattr.c_lflag &= ~( ICANON | ECHO );
-    tcsetattr( STDIN_FILENO, TCSANOW, &newattr );
-    ch = getchar();
-    tcsetattr( STDIN_FILENO, TCSANOW, &oldattr );
-    return ch;
-}
+    #define CLEAR "clear"
+    int getch(void){
+        struct termios oldattr, newattr;
+        int ch;
+        tcgetattr( STDIN_FILENO, &oldattr );
+        newattr = oldattr;
+        newattr.c_lflag &= ~( ICANON | ECHO );
+        tcsetattr( STDIN_FILENO, TCSANOW, &newattr );
+        ch = getchar();
+        tcsetattr( STDIN_FILENO, TCSANOW, &oldattr );
+        return ch;
+    }
 
-int getche(void){
-    struct termios oldattr, newattr;
-    int ch;
-    tcgetattr( STDIN_FILENO, &oldattr );
-    newattr = oldattr;
-    newattr.c_lflag &= ~( ICANON );
-    tcsetattr( STDIN_FILENO, TCSANOW, &newattr );
-    ch = getchar();
-    tcsetattr( STDIN_FILENO, TCSANOW, &oldattr );
-    return ch;
-}
+    int getche(void){
+        struct termios oldattr, newattr;
+        int ch;
+        tcgetattr( STDIN_FILENO, &oldattr );
+        newattr = oldattr;
+        newattr.c_lflag &= ~( ICANON );
+        tcsetattr( STDIN_FILENO, TCSANOW, &newattr );
+        ch = getchar();
+        tcsetattr( STDIN_FILENO, TCSANOW, &oldattr );
+        return ch;
+    }
 
 #endif
 FILE *fptr,*fp,*ft;
