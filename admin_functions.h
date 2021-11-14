@@ -46,21 +46,38 @@ void create() {
 }
 
 // DISPLAY FUNCTION
-void display() {
+void display(int flag) {
 	system(CLEAR);
 
     fptr = fopen("products.dat","r");
+    gotoxy(0, 2);
+    printf("    ::::::::::::::::::::::::::::::::::: Product catalogue :::::::::::::::::::::::::::::::::::::::::");
     
-    printf("ID |Name  |  Des ");
+    gotoxy(5, 3);
+    printf("===============================================================================================");
+    
+    gotoxy(5, 4);
+    // printf("Product ID\t\tProduct Name\t\tQuantity\t  Price\t        Description"); //TABLE TITLES !
+    printf("ID   |Name                |");
+    printf("Description                                       |");
+    printf("Price   |");
+    printf("Quantity ");
+
+    gotoxy(5, 5);
+    printf("===============================================================================================");
+
+    int counter = 0;
     while (fread(&p_1,sizeof(Product), 1,fptr))
-    {
-        printf("\n%-5d|%-20s|%-50s|%8.2f|%4d", p_1.id, p_1.product_name, p_1.description, p_1.price, p_1.quantity);
+    {   
+        gotoxy(5, counter + 6);
+        printf("%-5d|%-20s|%-50s|%8.2f|%8d", p_1.id, p_1.product_name, p_1.description, p_1.price, p_1.quantity);
+        counter++;
     }
     fclose(fptr);
     printf("\n");
-    int flag = 0;
-    printf("Go Back (1 = Yes, 0 = No) : ");
-    scanf("%d",&flag);
+    // int flag = 0;
+    // printf("Go Back (1 = Yes, 0 = No) : ");
+    // scanf("%d",&flag);
     while (!flag)
     {
     	printf("Go Back (1 = Yes, 0 = No) : ");
@@ -131,17 +148,34 @@ void append() {
 
 // SEARCH FUNCTION
 void search_product() {
-
+    system(CLEAR);
     int id, found = 0;
     fp = fopen("products.dat","r");
     printf("Enter the Product ID to Search : ");
     scanf("%d", &id);
+    gotoxy(0, 2);
+    printf("    ::::::::::::::::::::::::::::::::::: Product catalogue :::::::::::::::::::::::::::::::::::::::::");
+    
+    gotoxy(5, 3);
+    printf("===============================================================================================");
+    
+    gotoxy(5, 4);
+    // printf("Product ID\t\tProduct Name\t\tQuantity\t  Price\t        Description"); //TABLE TITLES !
+    printf("ID   |Name                |");
+    printf("Description                                       |");
+    printf("Price   |");
+    printf("Quantity ");
 
+    gotoxy(5, 5);
+    printf("===============================================================================================");
+
+    int counter = 0;
     while (fread(&p_1,sizeof(Product), 1,fp))
     {
         if (p_1.id == id) {
             found = 1;
-            printf("%-5d|%-20s|%-50s|%8.2f|%4d\n", p_1.id, p_1.product_name, p_1.description, p_1.price, p_1.quantity);
+            gotoxy(5, 6 + counter);
+            printf("%-5d|%-20s|%-50s|%8.2f|%8d\n", p_1.id, p_1.product_name, p_1.description, p_1.price, p_1.quantity);
         }
     }
     if(!found) {
@@ -163,6 +197,7 @@ void update_product() {
     // ft is the temporary file for updating
     int id, found = 0;
     char temp[2];
+    display(1);
     fp = fopen("products.dat","r");
     ft = fopen("temp.dat","w");
     printf("Enter the Product ID to Update : ");
@@ -206,7 +241,7 @@ void update_product() {
 
 // DELETE PRODUCT FUNCTION
 void delete_product() {
-
+    display(1);
     int id, found = 0;
     char temp[2];
     fp = fopen("products.dat","r");
@@ -257,7 +292,7 @@ void admin_menu () {
     	char options[9][50] = {
 			"Welcome to the E-Commerce Application",
 			"[1] CREATE INITIAL DATA FILE\n",
-			"[2] DISPLAY\n",
+			"[2] Display Product Catalouge\n",
 			"[3] APPEND\n",
 			"[4] SEARCH PRODUCT\n",
        		"[5] UPDATE PRODUCT\n",
@@ -283,7 +318,7 @@ void admin_menu () {
                 create();
                 break;
             case 2:
-                display();
+                display(0);
                 break;
             case 3:
                 append();

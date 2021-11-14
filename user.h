@@ -6,61 +6,6 @@ int displayProduct(void);
 int placeorder(void);
 int generate_bill(char address[100]);
 
-// typedef struct product
-// {
-//     char product_name[20];
-//     int id;
-//     int quantity;
-//     float price;
-//     char description[100];
-// }Product;
-
-struct cart_item{
-    char item_name[20];
-    char description[100];
-    float price;
-    int qty, id;
-};
-
-struct invoice
-{
-    char customer_name[30];
-    char date[50];
-    char description[100];
-    int numOfItems;
-    float total;
-    struct cart_item items[10];
-};
-
-// gotoxy() function definition
-// void gotoxy(int x, int y){
-//     printf("%c[%d;%df", 0x1B, y, x);
-// }
-
-// int getch(void){
-//     struct termios oldattr, newattr;
-//     int ch;
-//     tcgetattr( STDIN_FILENO, &oldattr );
-//     newattr = oldattr;
-//     newattr.c_lflag &= ~( ICANON | ECHO );
-//     tcsetattr( STDIN_FILENO, TCSANOW, &newattr );
-//     ch = getchar();
-//     tcsetattr( STDIN_FILENO, TCSANOW, &oldattr );
-//     return ch;
-// }
-
-// int getche(void){
-//     struct termios oldattr, newattr;
-//     int ch;
-//     tcgetattr( STDIN_FILENO, &oldattr );
-//     newattr = oldattr;
-//     newattr.c_lflag &= ~( ICANON );
-//     tcsetattr( STDIN_FILENO, TCSANOW, &newattr );
-//     ch = getchar();
-//     tcsetattr( STDIN_FILENO, TCSANOW, &oldattr );
-//     return ch;
-// }
-
 void usermenu(){
     system("clear");
     gotoxy(27,3);
@@ -75,24 +20,24 @@ void usermenu(){
     printf("Enter your choice:");
     switch(getche())
     {
-    case '1':
-    displayProduct();
-    break;
-    case '2':
-    search();
-    break;
-    case '3':
-    {
-    system("clear");
-    exit(0);
-    }
-    default:
-    {
-    gotoxy(10,23);
-    printf("\nWrong Entry!!Please re-entered correct option");
-    if(getch())
-    usermenu();
-    }
+        case '1':
+            displayProduct();
+            break;
+        case '2':
+            search();
+            break;
+        case '3':
+        {
+            system("clear");
+            exit(0);
+        }
+        default:
+        {
+            gotoxy(10,23);
+            printf("\nWrong Entry!!Please re-entered correct option");
+            if(getch())
+            usermenu();
+        }
 
     }
 }

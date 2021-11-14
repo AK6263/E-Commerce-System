@@ -67,3 +67,19 @@ int check_id(int id) {
     return flag;
 }
 
+struct cart_item{
+    char item_name[20];
+    char description[100];
+    float price;
+    int qty, id;
+};
+
+struct invoice
+{
+    char customer_name[30];
+    char date[50];
+    char description[100];
+    int numOfItems;
+    float total;
+    struct cart_item items[10];
+};
