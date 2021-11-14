@@ -15,7 +15,7 @@ void register_admin() {
         printf("Secret Code is Valid");
         LOGIN l_1;
         scanf("%c", temp);
-        fptr = fopen("login_admin.dat", "a");
+        fptr = fopen("logins.dat", "a");
         gotoxy(3,7);
         printf("Enter a USERNAME :");
         scanf("%[^\n]s", l_1.uname);
@@ -41,7 +41,7 @@ void register_user() {
     LOGIN l_1;
     // scanf("%c", temp);
 
-    fptr = fopen("login_user.dat", "a");
+    fptr = fopen("logins.dat", "a");
     gotoxy(3,5);
     printf("Enter a USERNAME : ");
     scanf("%[^\n]s", l_1.uname);

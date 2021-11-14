@@ -149,10 +149,6 @@ void signin(int n) {
     char username[20], password[20];
     int flag = 0;
     int admin_val=0;
-    // if (n == 0)
-    // {
-    //     fptr = fopen("login_user.dat", "r");
-    // }
     fptr = fopen("logins.dat", "r");
     
     gotoxy(3,4);
