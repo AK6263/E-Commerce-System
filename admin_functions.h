@@ -75,9 +75,7 @@ void display(int flag) {
     }
     fclose(fptr);
     printf("\n");
-    // int flag = 0;
-    // printf("Go Back (1 = Yes, 0 = No) : ");
-    // scanf("%d",&flag);
+    flag = flag;
     while (!flag)
     {
     	printf("Go Back (1 = Yes, 0 = No) : ");
@@ -286,22 +284,30 @@ void exit_admin() {
 // ADMIN_MENU
 void admin_menu () {
 	int choice, i;
+    if((fptr = fopen("products.dat","r"))!=NULL) {
+            // The Products DataBase Exists 
+            fclose(fptr);
+    } else {
+            // The Products DataBase Doesn't Exist
+            create();
+            // This Function Creates the function
+    }
 	
     do
     {
-    	char options[9][50] = {
+    	char options[7][50] = {
 			"Welcome to the E-Commerce Application",
-			"[1] CREATE INITIAL DATA FILE\n",
-			"[2] Display Product Catalouge\n",
-			"[3] APPEND\n",
-			"[4] SEARCH PRODUCT\n",
-       		"[5] UPDATE PRODUCT\n",
-			"[6] DELETE PRODUCT\n",
+			// "[1] CREATE INITIAL DATA FILE\n",
+			"[1] Display Product Catalouge\n",
+			"[2] APPEND A PRODUCT\n",
+			"[3] SEARCH PRODUCT\n",
+       		"[4] UPDATE PRODUCT\n",
+			"[5] DELETE PRODUCT\n",
 			"[0] EXIT\n"
 		};
         system(CLEAR);
         
-		for(i = 0; i < 9; i++){
+		for(i = 0; i < 7; i++){
 			if(i == 0)
 				gotoxy(20,i+4);
 			else
@@ -315,21 +321,18 @@ void admin_menu () {
         switch (choice)
         {
             case 1:
-                create();
-                break;
-            case 2:
                 display(0);
                 break;
-            case 3:
+            case 2:
                 append();
                 break;
-            case 4:
+            case 3:
                 search_product();
                 break;
-            case 5:
+            case 4:
                 update_product();
                 break;
-            case 6:
+            case 5:
                 delete_product();
                 break;
             case 0:

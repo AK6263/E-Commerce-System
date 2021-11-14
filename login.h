@@ -80,7 +80,7 @@ void admin_login() {
         scanf("%c",temp);
         switch (option) {
         case 1:
-            signin(0);
+            signin(1);
             break;
         case 2:
             register_admin();
@@ -122,7 +122,7 @@ void user_login() {
         scanf("%c",temp);
         switch (option) {
         case 1:
-            signin(1);
+            signin(0);
             break;
         case 2:
             register_user();
@@ -149,7 +149,13 @@ void signin(int n) {
     char username[20], password[20];
     int flag = 0;
     int admin_val=0;
-    fptr = fopen("logins.dat", "r");
+    if (n == 1) {
+        fptr = fopen("login_a.dat", "r");
+    } else {
+        fptr = fopen("login_u.dat", "r");
+    }
+    
+    // fptr = fopen("logins.dat", "r");
     
     gotoxy(3,4);
     printf("Enter USERNAME : ");
@@ -161,15 +167,16 @@ void signin(int n) {
     scanf("%c",temp);
     
     while(fread(&l_1, sizeof(LOGIN), 1, fptr)) {
-        if (strcmp(l_1.uname, username) == 0) {
+        if ((strcmp(l_1.uname, username) == 0) && (strcmp(l_1.pass, password) == 0)) {
             // printf("\nUSERNAME is VALID\n");
-            flag++;
-            if (strcmp(l_1.pass, password) == 0) {
-                // printf("\nPASSSWORD is VALID\n");
-                flag++;
-            } else {
-                flag = 0;
-            }
+            // flag++;
+            // if (strcmp(l_1.pass, password) == 0) {
+            //     // printf("\nPASSSWORD is VALID\n");
+            //     flag++;
+            // } else {
+            //     flag = 0;
+            // }
+            flag = 2;
         } else {
             flag=0;
         }
@@ -189,11 +196,11 @@ void signin(int n) {
     {
         printf("USERNAME OR PASSWORD IS INCORRECT. Press Enter to go back\n");
         scanf("%c",temp);
-    } else {
+    } else if (flag == 2) {
         printf("LOGIN Successful Press enter\n");
         if (admin_val == 1) {
             // Go To ADMIN MENU
-            // scanf("%c",temp);
+            scanf("%c",temp);
             admin_menu();
         } else {
             // GO To User Menu
