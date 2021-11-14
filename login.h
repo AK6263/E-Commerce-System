@@ -44,7 +44,6 @@ void login() {
         {
         case 1:
             admin_login();
-            // register_admin();
             break;
         
         case 2:
@@ -168,14 +167,6 @@ void signin(int n) {
     
     while(fread(&l_1, sizeof(LOGIN), 1, fptr)) {
         if ((strcmp(l_1.uname, username) == 0) && (strcmp(l_1.pass, password) == 0)) {
-            // printf("\nUSERNAME is VALID\n");
-            // flag++;
-            // if (strcmp(l_1.pass, password) == 0) {
-            //     // printf("\nPASSSWORD is VALID\n");
-            //     flag++;
-            // } else {
-            //     flag = 0;
-            // }
             flag = 2;
         } else {
             flag=0;

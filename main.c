@@ -36,18 +36,6 @@ int main()
         
     } while (choice != 1);
     system(CLEAR);
-    
     login();
-
-
-    // delete_product();
-    // display(0);
-    // search_product();
-    // update_product();
-    // append();
-    // placeorder();
-    // printf("LOGIN");
-    // usermenu();
-    // admin_menu();
     return 0;
 }
