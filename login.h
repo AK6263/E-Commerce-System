@@ -149,7 +149,12 @@ void signin(int n) {
     char username[20], password[20];
     int flag = 0;
     int admin_val=0;
+    // if (n == 0)
+    // {
+    //     fptr = fopen("login_user.dat", "r");
+    // }
     fptr = fopen("logins.dat", "r");
+    
     gotoxy(3,4);
     printf("Enter USERNAME : ");
     scanf("%[^\n]s", username);
@@ -158,14 +163,19 @@ void signin(int n) {
     printf("Enter PASSWORD : ");
     scanf("%[^\n]s", password);
     scanf("%c",temp);
+    
     while(fread(&l_1, sizeof(LOGIN), 1, fptr)) {
         if (strcmp(l_1.uname, username) == 0) {
             // printf("\nUSERNAME is VALID\n");
             flag++;
-        }
-        if (strcmp(l_1.pass, password) == 0) {
-            // printf("\nPASSSWORD is VALID\n");
-            flag++;
+            if (strcmp(l_1.pass, password) == 0) {
+                // printf("\nPASSSWORD is VALID\n");
+                flag++;
+            } else {
+                flag = 0;
+            }
+        } else {
+            flag=0;
         }
         if (flag==2) {
             admin_val = l_1.admin;
@@ -177,9 +187,12 @@ void signin(int n) {
     if (flag == 0)
     {
         printf("USERNAME AND PASSWORD IS INCORRECT\n");
+        printf("Press Enter to go back.");
+        scanf("%c",temp);
     } else if (flag == 1)
     {
-        printf("USERNAME OR PASSWORD IS INCORRECT\n");
+        printf("USERNAME OR PASSWORD IS INCORRECT. Press Enter to go back\n");
+        scanf("%c",temp);
     } else {
         printf("LOGIN Successful Press enter\n");
         if (admin_val == 1) {
