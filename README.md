@@ -3,11 +3,11 @@ An Online E-commerce System better than Amazon.
 
 # Changes to be made
 
-- [ ] USER -> DisplayProduct -> Extra endline
+- [x] USER -> DisplayProduct -> Extra endline
 - [x] Correct rong Sepling and g -> @AK6263
-- [ ] Make sure the user doesn't use quantity more than the defined quantity in `products.dat`
+- [x] Make sure the user doesn't use quantity more than the defined quantity in `products.dat`
 - [ ] Subtract the quantity from `products.dat` after invoice is created
-- [ ] Make the user exit option so that the user goes back to the user login rather than exiting.
+- [x] Make the user exit option so that the user goes back to the user login rather than exiting.
 - [ ] Write Documentation
 - [x] Make UI Better @AK6263
 - [ ] Use Pointers whereever possible
