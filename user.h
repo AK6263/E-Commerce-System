@@ -127,7 +127,7 @@ int search(){
                 goto Cleanup4;
                 Cleanup4:;
                 gotoxy(10,32);
-                printf("\aInvalin Entry!!Please re-enter a valid option. Redirecting to product catalogue... ");
+                printf("\aInvalid Entry!!Please re-enter a valid option. Redirecting to product catalogue... ");
                 sleep(3);
                 displayProduct();
                 }
