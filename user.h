@@ -32,7 +32,10 @@ void usermenu(){
         }
         case 3:
         {
-    
+            gotoxy(20,17);
+            printf("Closing application");
+            sleep(2);
+            exit(0);
             break;
         }
         default:
@@ -486,16 +489,16 @@ int placeorder(){
     return 0;
 }
 
-void genBillheader(FILE *STREAM, char name[30], char date[30], char address[100])
+void genBillheader(FILE *STREAM, char name[30], char date[30])
 {
     printf("\n\n\t\t   %s\n\t ---------------------------", "Aapki Dukaan");
-    printf("\n\tOrder placed on: %s\n\tInvoice To: %s\n  Address: %s\n", date, name, address);
+    printf("\n\tOrder placed on: %s\n\tInvoice To: %s\n", date, name);
     printf("\n==============================================\n%-20s%-10s%-10s%-10s", 
         "Item", "ID", "Quantity", "Total");
     printf("\n----------------------------------------------\n\n");    
 
     fprintf(STREAM, "\t\t   %s\n\t ---------------------------", "Aapki Dukaan");
-    fprintf(STREAM, "\n\tOrder placed on: %s\n\tInvoice To: %s\n  Address: %s", date, name, address);
+    fprintf(STREAM, "\n\tOrder placed on: %s\n\tInvoice To: %s\n", date, name);
     fprintf(STREAM, "\n==============================================\n%-20s%-10s%-10s%-10s", 
         "Item", "ID", "Quantity", "Total");
     fprintf(STREAM, "\n----------------------------------------------\n\n"); 
@@ -586,7 +589,7 @@ int generate_bill(char address[100])
             FILE *fp_inv = fopen("invoices.txt", "a");
 
             //header of the receipt 
-            genBillheader(fp_receipt, new_invoice.customer_name, new_invoice.date, address);
+            genBillheader(fp_receipt, new_invoice.customer_name, new_invoice.date);
             
             while(fscanf(fp_cart, "%d,%20[^,],%d,%f,%[^\n]s", &cart.id, cart.item_name, &cart.qty, 
                 &cart.price, cart.description)!=EOF){

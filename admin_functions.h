@@ -336,6 +336,10 @@ void admin_menu () {
                 delete_product();
                 break;
             case 0:
+                gotoxy(20,10+6);
+                printf("Closing application");
+                sleep(2);
+                exit(0);
                 break;
             default:
                 gotoxy(20,10+6);
