@@ -504,7 +504,7 @@ void genBillfooter(FILE *STREAM, float total)
 
 int generate_bill(char address[100])
 {
-    int opt, index = 0, len = strlen(__DATE__);
+    int opt, index = 0, len = strlen(__DATE__), flag;
     float net_total = 0;
     char ext[] = ".txt", rt_name[len], temp[len];
     struct cart_item cart;
@@ -640,8 +640,14 @@ int generate_bill(char address[100])
 
         case 3:
             printf("Press any key to go back\n");
+            flag = 1;
             break;
         }
+        if (flag == 1)
+        {
+            break;
+        }
+        
     }
     //cross-link to the main UI
     return 0;
