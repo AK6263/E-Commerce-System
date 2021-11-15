@@ -257,7 +257,7 @@ int displayProduct() {
     char true;
     system(CLEAR);
 
-    fp = fopen("products.dat", "rb");
+    fp = fopen("products.dat", "r");
 
     gotoxy(0, 5);
     printf("::::::::::::::::::::::::::::::::::: Product catalogue :::::::::::::::::::::::::::::::::::::::::::::::::::::");
