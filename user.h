@@ -642,6 +642,7 @@ int generate_bill(char address[100])
         case 3:
             printf("Press any key to go back\n");
             flag = 1;
+            usermenu();
             break;
         }
         if (flag == 1)
