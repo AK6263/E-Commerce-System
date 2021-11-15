@@ -6,7 +6,7 @@ void register_admin() {
     char secret[] = "Secret";
     char input_secret[20];
     gotoxy(3, 4);
-    printf("Enter Scret Code : ");
+    printf("Enter Secret Code : ");
     scanf("%[^\n]s", input_secret);
     
     if(strcmp(secret, input_secret) == 0) {

@@ -244,7 +244,7 @@ void delete_product() {
     char temp[2];
     fp = fopen("products.dat","r");
     ft = fopen("temp.dat","w");
-    printf("Enter the Product ID to Update : ");
+    printf("Enter the Product ID to Delete : ");
     scanf("%d", &id);
 
     while (fread(&p_1,sizeof(Product), 1,fp))
