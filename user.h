@@ -55,7 +55,7 @@ int search(){
     fp = fopen("products.dat","r");
     gotoxy(20,3);
     printf("Enter the Product name to Search : ");
-    scanf("%c",temp); // Flushing ny escapes
+    scanf("%c",temp);
     scanf("%[^\n]s",n);
     int choice;
     //scanf("%d", &id);
@@ -213,6 +213,41 @@ int printcart(){
 
 }
 
+void subtract(int n,int q){
+    FILE *fp, *ft;
+    int found=0;
+    fp = fopen("products.dat","r");
+    ft = fopen("temp.dat","w");
+    Product p_2;
+    while (fread(&p_2,sizeof(Product), 1,fp))
+    {
+        if (p_2.id == n) {
+            found = 1;
+            strcpy(p_1.product_name,p_2.product_name);
+            strcpy(p_1.description,p_2.description);
+            p_1.id=p_2.id;
+            p_1.price=p_2.price;
+            p_1.quantity=p_2.quantity - q;
+        }
+        else{
+            p_1=p_2;
+        }
+        fwrite(&p_1, sizeof(Product), 1, ft);
+    }
+    fclose(ft);
+    fclose(fp);
+    if(found==1){
+        ft = fopen("temp.dat","r");
+        fp = fopen("products.dat", "w");
+        while (fread(&p_1, sizeof(Product), 1,ft)) {
+            fwrite(&p_1, sizeof(Product), 1, fp);
+        }
+        
+        fclose(fp);
+        fclose(ft);
+    }
+} 
+
 int addtocart(int i, int q){
     FILE *fp, *fptr;
     int n,j;
@@ -228,11 +263,13 @@ int addtocart(int i, int q){
                     if (a.id==i){
                         if (a.quantity<q){
                             printf("Only %d items available\nRedirecting to catalogue...",a.quantity);
+            
                             //sleep(1);
                             displayProduct();
                         }
                         else{
                             fprintf(fptr,"%-1d,%-1s,%1d,%1f,%-1s\n", a.id, a.product_name, q, a.price, a.description);
+                            subtract(a.id,q);
                             //product_quantity(q);
                             //printf("\n%d",a.quantity);
                             //a.quantity=a.quantity-q;
@@ -282,7 +319,7 @@ int displayProduct() {
                 fclose(fp);
 
     printf("\n::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
-    printf("\n"); // chappri fix
+    printf("\n");
     gotoxy(5,22);
     printf("1. Enter product id to add to cart");
     gotoxy(5,24);
@@ -452,13 +489,13 @@ int placeorder(){
 void genBillheader(FILE *STREAM, char name[30], char date[30], char address[100])
 {
     printf("\n\n\t\t   %s\n\t ---------------------------", "Aapki Dukaan");
-    printf("\n\tOrder placed on: %s\n\tInvoice To: %s\n  \n", date, name);
+    printf("\n\tOrder placed on: %s\n\tInvoice To: %s\n  Address: %s\n", date, name, address);
     printf("\n==============================================\n%-20s%-10s%-10s%-10s", 
         "Item", "ID", "Quantity", "Total");
     printf("\n----------------------------------------------\n\n");    
 
     fprintf(STREAM, "\t\t   %s\n\t ---------------------------", "Aapki Dukaan");
-    fprintf(STREAM, "\n\tOrder placed on: %s\n\tInvoice To: %s\n  ", date, name);
+    fprintf(STREAM, "\n\tOrder placed on: %s\n\tInvoice To: %s\n  Address: %s", date, name, address);
     fprintf(STREAM, "\n==============================================\n%-20s%-10s%-10s%-10s", 
         "Item", "ID", "Quantity", "Total");
     fprintf(STREAM, "\n----------------------------------------------\n\n"); 
@@ -501,12 +538,11 @@ void genBillfooter(FILE *STREAM, float total)
     fprintf(STREAM, "%-40s%-18.2f\n", "Grand total", grandTotal);
     fprintf(STREAM, "----------------------------------------------\n");
     fprintf(STREAM, "Thank you!! ----------------------------------\n");
-    fclose(fopen("cart.csv", "w"));
 }
 
 int generate_bill(char address[100])
 {
-    int opt, index = 0, len = strlen(__DATE__), flag;
+    int opt, index = 0, len = strlen(__DATE__),flag;
     float net_total = 0;
     char ext[] = ".txt", rt_name[len], temp[len];
     struct cart_item cart;
@@ -642,15 +678,13 @@ int generate_bill(char address[100])
 
         case 3:
             printf("Press any key to go back\n");
-            flag = 1;
+            flag=1;
+            break;
+        }
+        if(flag==1){
             usermenu();
             break;
         }
-        if (flag == 1)
-        {
-            break;
-        }
-        
     }
     //cross-link to the main UI
     return 0;
