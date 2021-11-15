@@ -452,13 +452,13 @@ int placeorder(){
 void genBillheader(FILE *STREAM, char name[30], char date[30], char address[100])
 {
     printf("\n\n\t\t   %s\n\t ---------------------------", "Aapki Dukaan");
-    printf("\n\tOrder placed on: %s\n\tInvoice To: %s\n  Address: %s\n", date, name, address);
+    printf("\n\tOrder placed on: %s\n\tInvoice To: %s\n  \n", date, name);
     printf("\n==============================================\n%-20s%-10s%-10s%-10s", 
         "Item", "ID", "Quantity", "Total");
     printf("\n----------------------------------------------\n\n");    
 
     fprintf(STREAM, "\t\t   %s\n\t ---------------------------", "Aapki Dukaan");
-    fprintf(STREAM, "\n\tOrder placed on: %s\n\tInvoice To: %s\n  Address: %s", date, name, address);
+    fprintf(STREAM, "\n\tOrder placed on: %s\n\tInvoice To: %s\n  ", date, name);
     fprintf(STREAM, "\n==============================================\n%-20s%-10s%-10s%-10s", 
         "Item", "ID", "Quantity", "Total");
     fprintf(STREAM, "\n----------------------------------------------\n\n"); 
