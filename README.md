@@ -8,9 +8,9 @@ An Online E-commerce System better than Amazon.
 - [x] Make sure the user doesn't use quantity more than the defined quantity in `products.dat`
 - [x] Subtract the quantity from `products.dat` after invoice is created
 - [x] Make the user exit option so that the user goes back to the user login rather than exiting.
-- [ ] Write Documentation
+- [x] Write Documentation
 - [x] Make UI Better @AK6263
-- [ ] Use Pointers whereever possible
+- [x] Use Pointers whereever possible
 - [x] Fixed Login Issue. Made two files Instead -> @AK6263
 
 
