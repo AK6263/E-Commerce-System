@@ -227,7 +227,7 @@ int addtocart(int i, int q){
                     if (a.id==i){
                         if (a.quantity<q){
                             printf("Only %d items available\nRedirecting to catalogue...",a.quantity);
-                            sleep(1);
+                            //sleep(1);
                             displayProduct();
                         }
                         else{
@@ -239,23 +239,11 @@ int addtocart(int i, int q){
                         }
                     }
                 }
-                printf("\n\nItem added to cart\n\n");
+                printf("\nItem added to cart.");
                 
     fclose(fp);
-    fclose(fptr);
-        
-        
-        switch(getche())
-        {
-        default:
-        {
-        //gotoxy(10,38);
-        printf("\n\nRedirecting to catalogue");
-        sleep(2);
-        displayProduct();
-        }
-
-        }
+    fclose(fptr);    
+    displayProduct();
 
     return 0;
 }
