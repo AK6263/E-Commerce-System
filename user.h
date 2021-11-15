@@ -8,7 +8,7 @@ int generate_bill(char address[100]);
 
 void usermenu(){
     int choice;
-    system("clear");
+    system(CLEAR);
     gotoxy(27,3);
     printf("MAIN MENU ");
     gotoxy(20,5);
@@ -47,7 +47,7 @@ void usermenu(){
 }
 
 int search(){
-    system("clear");
+    system(CLEAR);
     Product p_1;
     FILE *fp;
     char n[30];
@@ -118,7 +118,7 @@ int search(){
                 {
                 goto Cleanup3;
                 Cleanup3:;
-                system("clear");
+                system(CLEAR);
                 usermenu();
                 }
                 default:
@@ -151,7 +151,7 @@ int printcart(){
     int choice;
 
     char true;
-    system("clear");
+    system(CLEAR);
 
     fp = fopen("cart.csv", "r");
 
@@ -255,7 +255,7 @@ int displayProduct() {
     int choice;
 
     char true;
-    system("clear");
+    system(CLEAR);
 
     fp = fopen("products.dat", "rb");
 
@@ -319,7 +319,7 @@ int displayProduct() {
     }
     case 4:
     {
-    system("clear");
+    system(CLEAR);
     usermenu();
     }
     default:
@@ -349,7 +349,7 @@ void compact_string(char *pointer)
 
 int placeorder(){
 
-    system("clear");
+    system(CLEAR);
 	int pin, time_slot, pin_found = 0, time_found = 0;
     char address[100];
 
