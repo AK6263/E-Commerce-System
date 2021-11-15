@@ -7,6 +7,7 @@ int placeorder(void);
 int generate_bill(char address[100]);
 
 void usermenu(){
+    int choice;
     system("clear");
     gotoxy(27,3);
     printf("MAIN MENU ");
@@ -18,25 +19,27 @@ void usermenu(){
     printf(" 3. Close Application");
     gotoxy(20,13);
     printf("Enter your choice:");
-    switch(getche())
+    scanf("%d",&choice);
+    switch(choice)
     {
-        case '1':
+        case 1:{
             displayProduct();
             break;
-        case '2':
+        }
+        case 2:{
             search();
             break;
-        case '3':
+        }
+        case 3:
         {
-            system("clear");
-            //exit(0);
+    
             break;
         }
         default:
         {
             gotoxy(10,23);
-            printf("\nWrong Entry!!Please re-entered correct option");
-            if(getch())
+            printf("\nInvalid entry!!Please re-enter a valid option. Redirecting to main menu");
+            sleep(2);
             usermenu();
         }
 
@@ -123,8 +126,8 @@ int search(){
                 goto Cleanup4;
                 Cleanup4:;
                 gotoxy(10,32);
-                printf("\aInvalin Entry!!Please re-enter a valid option ");
-                if(getch())
+                printf("\aInvalin Entry!!Please re-enter a valid option. Redirecting to product catalogue... ");
+                sleep(3);
                 displayProduct();
                 }
 
@@ -201,8 +204,8 @@ int printcart(){
         goto Cleanup4;
         Cleanup4:;
         gotoxy(10,36);
-        printf("\aWrong Entry!!Please re-entered correct option ");
-        if(getch())
+        printf("\aInvalid Entry!!Please re-enter a valid option. Redirecting to cart. ");
+        sleep(3);
         printcart();
         }
     }
@@ -227,11 +230,17 @@ int addtocart(int i, int q){
                             sleep(1);
                             displayProduct();
                         }
-                        else
-                        fprintf(fptr,"%-1d,%-1s,%1d,%1f,%-1s\n", a.id, a.product_name, q, a.price, a.description);
+                        else{
+                            fprintf(fptr,"%-1d,%-1s,%1d,%1f,%-1s\n", a.id, a.product_name, q, a.price, a.description);
+                            //product_quantity(q);
+                            //printf("\n%d",a.quantity);
+                            //a.quantity=a.quantity-q;
+                            //fwrite(&a,sizeof(Product), 1,fp);
+                        }
                     }
                 }
                 printf("\n\nItem added to cart\n\n");
+                
     fclose(fp);
     fclose(fptr);
         
@@ -241,8 +250,8 @@ int addtocart(int i, int q){
         default:
         {
         //gotoxy(10,38);
-        printf("\n\nPress any key to go back");
-        if(getch())
+        printf("\n\nRedirecting to catalogue");
+        sleep(2);
         displayProduct();
         }
 
@@ -251,9 +260,11 @@ int addtocart(int i, int q){
     return 0;
 }
 
+
 int displayProduct() {
     FILE *fp;
     struct product a;
+    int choice;
 
     char true;
     system("clear");
@@ -293,10 +304,11 @@ int displayProduct() {
     printf("4. Go back to main menu");
     gotoxy(5,31);
     printf("Enter your choice: ");
+    scanf("%d",&choice);
 
-    switch(getche())
+    switch(choice)
     {
-    case '1':
+    case 1:{
     goto Cleanup;
     Cleanup:;
     int id, quantity;
@@ -308,13 +320,16 @@ int displayProduct() {
     scanf("%d",&quantity);
     addtocart(id,quantity);
     break;
-    case '2':
+    }
+    case 2:{
     search();
     break;
-    case '3':
+    }
+    case 3:{
     printcart();
     break;
-    case '4':
+    }
+    case 4:
     {
     system("clear");
     usermenu();
@@ -322,8 +337,8 @@ int displayProduct() {
     default:
     {
     gotoxy(10,32);
-    printf("\aWrong Entry!!Please re-entered correct option ");
-    if(getch())
+    printf("\aInvalid entry!!Please re-enter a valid option. Redirecting to product catalogue.");
+    sleep(3);
     displayProduct();
     }
 
@@ -434,6 +449,7 @@ int placeorder(){
             generate_bill(address);
         
         case 3:
+            usermenu();
             break;
 
     }
@@ -586,12 +602,6 @@ int generate_bill(char address[100])
                 break;
             }
             
-            //if(getche())
-            //usermenu();
-            
-            //exit(0);
-
-            //cross-link to the main UI
             return 0;
         
         case 2:
@@ -641,12 +651,7 @@ int generate_bill(char address[100])
             continue;
 
         case 3:
-            //printf("Redirecting to the homepage...\n");
-            // int val;
             printf("Press any key to go back\n");
-            //if(getch)
-            //usermenu();
-            //usermenu();
             break;
         }
     }
