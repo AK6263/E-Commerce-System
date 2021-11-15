@@ -501,6 +501,7 @@ void genBillfooter(FILE *STREAM, float total)
     fprintf(STREAM, "%-40s%-18.2f\n", "Grand total", grandTotal);
     fprintf(STREAM, "----------------------------------------------\n");
     fprintf(STREAM, "Thank you!! ----------------------------------\n");
+    fclose(fopen("cart.csv", "w"));
 }
 
 int generate_bill(char address[100])
