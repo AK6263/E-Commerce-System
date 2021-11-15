@@ -29,7 +29,8 @@ void usermenu(){
         case '3':
         {
             system("clear");
-            exit(0);
+            //exit(0);
+            break;
         }
         default:
         {
@@ -62,7 +63,7 @@ int search(){
             found = 1;
             //printf("%-5d|%-20s|%-50s|%8.2f|%4d\n", p_1.id, p_1.product_name, p_1.description, p_1.price, p_1.quantity);
             gotoxy(0, 5);
-            printf("    ::::::::::::::::::::::::::::::::::: Product catalogue :::::::::::::::::::::::::::::::::::::::::::::::::::::");
+            printf("    ::::::::::::::::::::::::::::::::::: Search result :::::::::::::::::::::::::::::::::::::::::::::::::::::");
 
             gotoxy(5, 6);
             printf("===========================================================================================================");
@@ -122,7 +123,7 @@ int search(){
                 goto Cleanup4;
                 Cleanup4:;
                 gotoxy(10,32);
-                printf("\aWrong Entry!!Please re-entered correct option ");
+                printf("\aInvalin Entry!!Please re-enter a valid option ");
                 if(getch())
                 displayProduct();
                 }
@@ -131,7 +132,9 @@ int search(){
         }
     }
     if(!found) {
-        printf("\nProduct not found\n");
+        printf("\nProduct not found\n Redirecting to homepage\n");
+        sleep(1);
+        usermenu();
         
     }
     fclose(fp);
@@ -219,7 +222,13 @@ int addtocart(int i, int q){
                 {
                     
                     if (a.id==i){
-                    fprintf(fptr,"%-1d,%-1s,%1d,%1f,%-1s\n", a.id, a.product_name, q, a.price, a.description);
+                        if (a.quantity<q){
+                            printf("Only %d items available\nRedirecting to catalogue...",a.quantity);
+                            sleep(1);
+                            displayProduct();
+                        }
+                        else
+                        fprintf(fptr,"%-1d,%-1s,%1d,%1f,%-1s\n", a.id, a.product_name, q, a.price, a.description);
                     }
                 }
                 printf("\n\nItem added to cart\n\n");
@@ -272,7 +281,7 @@ int displayProduct() {
 
                 fclose(fp);
 
-    printf("::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
+    printf("\n::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
 
     gotoxy(5,22);
     printf("1. Enter product id to add to cart");
@@ -496,6 +505,7 @@ int generate_bill(char address[100])
     char ext[] = ".txt", rt_name[len], temp[len];
     struct cart_item cart;
     struct invoice new_invoice;
+    int choice;
 
     //accessing the cart text file
     FILE *fp_cart = fopen("cart.csv", "r");
@@ -567,8 +577,19 @@ int generate_bill(char address[100])
             }
             fclose(fp_inv);
 
-            printf("\nProcess completed successfully.\n");
-            exit(0);
+            printf("\nProcess completed successfully.\n Press [1] to continue shopping [0] to exit: ");
+            scanf("%d",&choice);
+            if(choice==1)
+            usermenu();
+            else if (choice==0);
+            {
+                break;
+            }
+            
+            //if(getche())
+            //usermenu();
+            
+            //exit(0);
 
             //cross-link to the main UI
             return 0;
@@ -623,8 +644,8 @@ int generate_bill(char address[100])
             //printf("Redirecting to the homepage...\n");
             // int val;
             printf("Press any key to go back\n");
-            if(getch)
-            usermenu();
+            //if(getch)
+            //usermenu();
             //usermenu();
             break;
         }
@@ -632,9 +653,3 @@ int generate_bill(char address[100])
     //cross-link to the main UI
     return 0;
 }
-
-// int main(){
-
-//     usermenu();
-//     return 0;
-// }
