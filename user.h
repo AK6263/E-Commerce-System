@@ -50,11 +50,12 @@ int search(){
     system(CLEAR);
     Product p_1;
     FILE *fp;
-    char n[30];
+    char n[30],temp[2];
     int id,value, found = 0;
     fp = fopen("products.dat","r");
     gotoxy(20,3);
     printf("Enter the Product name to Search : ");
+    scanf("%c",temp); // Flushing ny escapes
     scanf("%[^\n]s",n);
     int choice;
     //scanf("%d", &id);
