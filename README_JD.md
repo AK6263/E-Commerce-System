@@ -20,6 +20,3 @@
 * ```pin.txt```... pincode of the localities we are delivering to
 * ```invoices.txt``` contain entire the purchase history
 
-## ToDo
-
-- [ ] ```delivery.c```: address to be passed to the billing stage
